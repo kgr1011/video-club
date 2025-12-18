@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEUNRYEONG VIDEO CLUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-yellow: #FFEA00;
+            --bg-black: #000000;
+            --accent-pink: #FF2D78;
+            --card-gray: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-black); color: white; font-family: 'Noto Sans KR', sans-serif; line-height: 1.6; }
+
+        .neon-text {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 10px rgba(255, 234, 0, 0.7), 0 0 20px rgba(255, 234, 0, 0.3);
+            font-weight: 900;
+        }
+
+        /* --- Header --- */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 20px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(0,0,0,0.8); z-index: 1000;
+        }
+        .logo { font-size: 1.2rem; }
+
+        /* --- Hero Section (이미지 1번) --- */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            padding: 0 10%;
+            background: linear-gradient(to right, rgba(0,0,0,0.85) 30%, rgba(0,0,0,0.2)), url('1.jpg');
+            background-size: cover; background-position: center;
+        }
+        .hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); margin-bottom: 20px; }
+        .scroll { margin-top: 50px; font-size: 0.7rem; letter-spacing: 3px; border-left: 1px solid var(--neon-yellow); padding-left: 10px; }
+
+        /* --- Common Section --- */
+        section { padding: 100px 10%; border-bottom: 1px solid #111; }
+        .label { color: var(--accent-pink); font-size: 0.8rem; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; }
+        h2 { font-size: 2.5rem; margin-top: 10px; margin-bottom: 30px; }
+
+        /* --- Manager Section (이미지 2번) --- */
+        .manager-content { max-width: 600px; font-size: 1.1rem; color: #ccc; }
+
+        /* --- Video Genre Grid (이미지 5, 6번) --- */
+        .filter-buttons { display: flex; gap: 15px; margin-bottom: 30px; }
+        .btn { 
+            padding: 8px 20px; border: 1px solid #333; background: none; color: white; cursor: pointer;
+        }
+        .btn.active { background: var(--neon-yellow); color: black; font-weight: bold; }
+
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .video-item { position: relative; border-radius: 5px; overflow: hidden; border: 1px solid #222; }
+        .video-item img { width: 100%; display: block; filter: brightness(0.7); }
+        .video-tag { position: absolute; top: 10px; left: 10px; background: var(--neon-yellow); color: black; padding: 2px 8px; font-size: 0.7rem; font-weight: bold; }
+        .video-title { padding: 10px; font-size: 0.9rem; background: #0a0a0a; }
+
+        /* --- Character Flip Cards (이미지 7, 8번) --- */
+        .char-grid { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        .flip-card { width: 300px; height: 450px; perspective: 1000px; cursor: pointer; }
+        .flip-inner { position: relative; width: 100%; height: 100%; transition: transform 0.6s; transform-style: preserve-3d; }
+        .flip-card.is-flipped .flip-inner { transform: rotateY(180deg); }
+        .flip-front, .flip-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; border: 1px solid #333; }
+        .flip-front img { width: 100%; height: 100%; object-fit: cover; border-radius: 15px; }
+        .flip-back { background: var(--card-gray); transform: rotateY(180deg); padding: 30px; display: flex; flex-direction: column; justify-content: center; }
+        .tag-box { display: flex; gap: 5px; margin-top: auto; }
+        .tag-box span { font-size: 0.7rem; border: 1px solid #444; padding: 3px 8px; color: #888; }
+
+        /* --- Receipt Footer (이미지 9번) --- */
+        .receipt-wrapper { display: flex; justify-content: center; padding: 100px 0; background: #050505; }
+        .receipt { 
+            background: #fdfdf5; color: black; width: 360px; padding: 40px; 
+            font-family: 'Courier New', monospace; position: relative; 
+            box-shadow: 10px 10px 0px rgba(255, 234, 0, 0.2);
+        }
+        .receipt::after {
+            content: "APPROVED"; position: absolute; border: 3px solid #e63946; color: #e63946;
+            padding: 5px 15px; font-weight: bold; bottom: 40px; right: 25px; transform: rotate(-15deg); font-size: 1.2rem;
+        }
+        .dash-line { border-bottom: 2px dashed #ccc; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo neon-text">GEUNRYEONG VIDEO CLUB</div>
+        <div style="font-size: 0.7rem; letter-spacing: 1px;">● ALWAYS OPEN</div>
+    </header>
+
+    <section class="hero">
+        <h1 class="neon-text">지금 가장 보고 싶은<br>영상을 대여해 드립니다.</h1>
+        <p style="opacity: 0.7;">Curated videos & characters by GeunRyeong</p>
+        <div class="scroll">SCROLL</div>
+    </section>
+
+    <section id="manager">
+        <span class="label">MANAGER</span>
+        <h2 class="neon-text">점주 소개</h2>
+        <div class="manager-content">
+            <p>VIDEO CLUB의 점주 김근령입니다.</p>
+            <p>영상을 보는 걸 좋아해 직접 제작까지 하게 되었습니다.</p>
+            <p>나아가 영상뿐만 아니라 조금 더 넓은 범위의 작업도 하고 있습니다.</p>
+            <p style="margin-top: 20px; color: white;">이곳은 그 기록을 모아둔 공간입니다.</p>
+        </div>
+    </section>
+
+    <section id="genres">
+        <span class="label">GENRES</span>
+        <h2 class="neon-text">장르별 영상</h2>
+        <div class="filter-buttons">
+            <button class="btn active">ALL</button>
+            <button class="btn">VIDEO</button>
+        </div>
+        <div class="video-grid">
+            <div class="video-item">
+                <div class="video-tag">ANIMATION</div>
+                <img src="5.jpg" alt="AI Animation">
+                <div class="video-title">AI Animation</div>
+            </div>
+            <div class="video-item">
+                <div class="video-tag">3D ANIMATION</div>
+                <img src="4.jpg" alt="3D Character">
+                <div class="video-title">3D Character Animation</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="characters">
+        <span class="label">ORIGINAL CHARACTERS</span>
+        <h2 class="neon-text">오리지널 캐릭터</h2>
+        <div class="char-grid">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="7.jpg" alt="IAN"></div>
+                    <div class="flip-back">
+                        <h2 class="neon-text" style="font-size: 1.8rem;">IAN</h2>
+                        <p style="font-size: 0.9rem; margin-top: 15px;">낮에는 평범한 고등학생,<br>밤에는 인디 밴드 보컬.</p>
+                        <div class="tag-box"><span>#이중생활</span><span>#갭모에</span><span>#카리스마</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-inner">
+                    <div class="flip-front"><img src="8.jpg" alt="ECHO"></div>
+                    <div class="flip-back">
+                        <h2 class="neon-text" style="font-size: 1.8rem;">ECHO</h2>
+                        <p style="font-size: 0.9rem; margin-top: 15px;">네오 시티의 그림자 속에서 활동하는 언더그라운드 작곡가.</p>
+                        <div class="tag-box"><span>#해커</span><span>#자유와집중</span><span>#츤데레</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="receipt-wrapper">
+        <div class="receipt">
+            <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">VIDEO CLUB RENTAL INFO</p>
+            <div class="dash-line"></div>
+            <p>EMAIL: rrf0524@naver.com</p>
+            <p>INSTAGRAM: @kim__dobby_is_free</p>
+            <p>KAKAOTALK: kgr__0524</p>
+            <div class="dash-line"></div>
+            <p style="text-align: center; font-size: 0.8rem; margin-top: 20px;">THANK YOU FOR VISITING</p>
+        </div>
+    </div>
+
+</body>
+</html>
