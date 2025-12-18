@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>GEUNRYEONG VIDEO CLUB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="nav">
+        <h1 class="logo">GEUNRYEONG VIDEO CLUB</h1>
+        <span class="status">ALWAYS OPEN</span>
+    </header>
+
+    <section class="section equipment">
+        <p class="label">EQUIPMENT RENTAL</p>
+        <h2>장비 목록</h2>
+        <div class="tool-list">
+            <div class="tool-item pr">Premiere Pro</div>
+            <div class="tool-item ae">After Effects</div>
+            <div class="tool-item ps">Photoshop</div>
+        </div>
+    </section>
+
+    <section class="section characters">
+        <h2>오리지널 캐릭터</h2>
+        <div class="card" onclick="this.classList.toggle('flipped')">
+            <div class="card-inner">
+                <div class="card-front"><img src="assets/ian_front.jpg" alt="IAN"></div>
+                <div class="card-back">
+                    <h3>IAN</h3>
+                    <p>낮에는 학생, 밤에는 밴드 보컬</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section receipt-area">
+        <div class="receipt">
+            <p>VIDEO CLUB RENTAL INFO</p>
+            <p>EMAIL: rrf0524@naver.com</p>
+            <div id="stamp" class="stamp">APPROVED</div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
